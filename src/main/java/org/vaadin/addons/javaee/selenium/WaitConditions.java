@@ -1,7 +1,6 @@
 package org.vaadin.addons.javaee.selenium;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -84,19 +83,23 @@ public class WaitConditions {
 
     /**
      * Waits for all vaadin async calls to be finished. Has a built in timeout of 10 sec.
+     * 
+     * @deprecated Does not work any more and is therefore disabled
      */
+    @Deprecated
     public static void waitForVaadin(WebDriver driver) {
-        String isVaadinFinished = "      if (window.vaadin == null) {" + "          return true;" + "      }" + ""
-                + "      var clients = window.vaadin.clients;" + "      if (clients) {" + "          for (var client in clients) {"
-                + "              if (clients[client].isActive()) {" + "              return false;" + "              }" + "          }"
-                + "          return true;" + "      } else {" + "          return false;" + "      }";
+        // String isVaadinFinished = "      if (window.vaadin == null) {" + "          return true;" + "      }" + ""
+        // + "      var clients = window.vaadin.clients;" + "      if (clients) {" + "          for (var client in clients) {"
+        // + "              if (clients[client].isActive()) {" + "              return false;" + "              }" + "          }"
+        // + "          return true;" + "      } else {" + "          return false;" + "      }";
+        //
+        // JavascriptExecutor js = (JavascriptExecutor) driver;
+        // long timeoutTime = System.currentTimeMillis() + (LONG_WAIT_SEC * 1000);
+        // boolean finished = false;
+        // while ((System.currentTimeMillis() < timeoutTime) && (!finished)) {
+        // finished = ((Boolean) js.executeScript(isVaadinFinished, new Object[0])).booleanValue();
+        // }
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        long timeoutTime = System.currentTimeMillis() + LONG_WAIT_SEC;
-        boolean finished = false;
-        while ((System.currentTimeMillis() < timeoutTime) && (!finished)) {
-            finished = ((Boolean) js.executeScript(isVaadinFinished, new Object[0])).booleanValue();
-        }
     }
 
     public static void waitForShortTime() {

@@ -15,7 +15,7 @@ public class DateInputMethod extends AbstractInputMethod {
     @Override
     public void input(String id, String text) {
         WebElement dateInputField = getInputElement(id);
-        // dateInputField.clear();
+        dateInputField.clear();
         dateInputField.sendKeys(text);
     }
 
