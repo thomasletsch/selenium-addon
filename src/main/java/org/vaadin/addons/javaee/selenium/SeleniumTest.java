@@ -17,7 +17,7 @@ public abstract class SeleniumTest {
     private static final String URL_KEY = "url";
 
     @Rule
-    public TakeScreenshot seleniumDriverRule = new TakeScreenshot();
+    public static TakeScreenshot seleniumDriverRule = new TakeScreenshot();
 
     private String baseUrl;
 
@@ -31,9 +31,11 @@ public abstract class SeleniumTest {
 
     @Before
     public void setUpSelenium() throws Exception {
-        Properties properties = new Properties();
-        properties.load(getClass().getResourceAsStream("/env.properties"));
-        baseUrl = properties.getProperty(URL_KEY);
+        if (baseUrl == null) {
+            Properties properties = new Properties();
+            properties.load(getClass().getResourceAsStream("/env.properties"));
+            baseUrl = properties.getProperty(URL_KEY);
+        }
         seleniumDriverRule.getDriver().navigate().to(baseUrl);
     }
 
