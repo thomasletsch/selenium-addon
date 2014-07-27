@@ -62,7 +62,7 @@ public abstract class DataDriven {
             properties.load(resourceAsStream);
         } catch (Exception e) {
             log.error("Could not load " + propertyFile + ".properties", e);
-            throw new RuntimeException(e);
+            throw new RuntimeException("Could not load " + propertyFile + ".properties", e);
         }
         cache.put(propertyFile, properties);
         return properties;
